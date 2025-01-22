@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../common/product';
+import { CartService } from '../../services/cart.service';
+import { CartItem } from '../../common/cart-item';
 
 @Component({
   selector: 'app-product-details',
@@ -14,7 +16,7 @@ export class ProductDetailsComponent implements OnInit{
   
 
 
-  constructor(private productService : ProductService, private route : ActivatedRoute){}
+  constructor(private productService : ProductService, private cartService : CartService, private route : ActivatedRoute){}
 
   ngOnInit(): void {
     
@@ -31,6 +33,12 @@ export class ProductDetailsComponent implements OnInit{
         this.product = data;
       }
     );
+  }
+
+  addToCart(){
+    console.log(`Adding to cart : ${this.product.name}, ${this.product.unitPrice}`);
+    const theCartItem = new CartItem(this.product);
+    this.cartService.addToCart(theCartItem)
   }
 
 }
