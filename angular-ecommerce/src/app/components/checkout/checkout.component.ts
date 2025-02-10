@@ -20,8 +20,36 @@ export class CheckoutComponent implements OnInit{
         firstName : [''],
         lastName : [''],
         email : ['']
+      }),
+      shippingAddess : this.fb.group({
+        street : [""],
+        city : [""],
+        state : [""],
+        country : [""],
+        zipCode : [""]
+      }),
+      billingAddress : this.fb.group({
+        street : [""],
+        city : [""],
+        state : [""],
+        country : [""],
+        zipCode : [""]
+      }),
+      creditCard : this.fb.group({
+        cardType : [""],
+        nameOnCard : [""],
+        cardNumber : [""],
+        securityCode : [""],
+        expirationMonth : [""],
+        expirationYear : [""]
       })
     });
+  }
+
+  onSubmit(){
+    console.log("Handling the submit button.");
+    console.log(this.checkoutFormGroup.get("customer")?.value);
+    console.log(this.checkoutFormGroup.get("customer")?.value.email);
   }
 
 }
